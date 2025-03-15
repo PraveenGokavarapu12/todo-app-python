@@ -1,0 +1,114 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>To-Do List</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            background-color: #f8f9fa;
+            text-align: center;
+            margin: 0;
+            padding: 0;
+        }
+        h2 {
+            margin-top: 20px;
+            color: #333;
+        }
+        .container {
+            width: 40%;
+            margin: auto;
+            background: white;
+            padding: 20px;
+            border-radius: 8px;
+            box-shadow: 0px 0px 10px rgba(0, 0, 0, 0.1);
+        }
+        form {
+            margin-bottom: 20px;
+        }
+        input[type="text"] {
+            width: 70%;
+            padding: 8px;
+            border: 1px solid #ccc;
+            border-radius: 4px;
+        }
+        button {
+            padding: 8px 12px;
+            border: none;
+            background: #28a745;
+            color: white;
+            border-radius: 4px;
+            cursor: pointer;
+        }
+        button:hover {
+            background: #218838;
+        }
+        ul {
+            list-style-type: none;
+            padding: 0;
+        }
+        li {
+            background: #fff;
+            padding: 10px;
+            margin: 5px 0;
+            border-radius: 5px;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+        }
+        .task-text {
+            flex: 1;
+            text-align: left;
+        }
+        .completed {
+            text-decoration: line-through;
+            color: gray;
+        }
+        a {
+            text-decoration: none;
+            color: white;
+            padding: 5px 10px;
+            border-radius: 4px;
+            font-size: 14px;
+        }
+        .complete {
+            background: #007bff;
+        }
+        .complete:hover {
+            background: #0056b3;
+        }
+        .delete {
+            background: #dc3545;
+        }
+        .delete:hover {
+            background: #c82333;
+        }
+    </style>
+</head>
+<body>
+
+    <h2>To-Do List</h2>
+    <div class="container">
+        <form action="/add" method="post">
+            <input type="text" name="task" placeholder="Enter a task" required>
+            <button type="submit">Add Task</button>
+        </form>
+        <ul>
+            {% for i, task in enumerate(tasks) %}
+                <li>
+                    <span class="task-text {% if task['completed'] %}completed{% endif %}">
+                        {{ task["task"] }}
+                    </span>
+                    <div>
+                        {% if not task["completed"] %}
+                            <a href="/complete/{{ i }}" class="complete">Complete</a>
+                        {% endif %}
+                        <a href="/delete/{{ i }}" class="delete">Delete</a>
+                    </div>
+                </li>
+            {% endfor %}
+        </ul>
+    </div>
+
+</body>
+</html>
