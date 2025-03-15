@@ -38,11 +38,8 @@ The app will be available at `http://127.0.0.1:5000/`
 Flask-Todo-App/
 │-- templates/
 │   ├── index.html
-│-- static/
-│   ├── style.css
 │-- app.py
 │-- requirements.txt
-│-- Procfile
 │-- README.md
 ```
 
